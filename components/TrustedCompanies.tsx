@@ -20,9 +20,10 @@ interface NewsCardProps {
   title: string
   description: string
   image?: string
+  url?: string
 }
 
-function NewsCard({ title, description }: NewsCardProps) {
+function NewsCard({ title, description, url, image }: NewsCardProps) {
   return (
     <div 
       className="bg-white/80 backdrop-blur-sm rounded-2xl  p-6 shadow-lg hover:shadow-xl transition-shadow"
@@ -32,30 +33,64 @@ function NewsCard({ title, description }: NewsCardProps) {
         // borderImage: 'linear-gradient(180deg, #669CEC 0%, #AEA8EA 100%) 1'
       }}
     >
-      {/* Placeholder image */}
-      <div className="w-full h-32 bg-linear-to-br from-gray-200 to-gray-300 rounded-lg mb-4"></div>
+      {/* Article image */}
+      {image && (
+        <div className="w-full h-32 rounded-lg mb-4 overflow-hidden">
+          <Image 
+            src={image} 
+            alt={title} 
+            width={400} 
+            height={128} 
+            className="w-full h-full object-cover"
+          />
+        </div>
+      )}
       
       <h3 className="font-semibold text-slate-900 text-lg mb-2 line-clamp-2">{title}</h3>
       <p className="text-gray-600 text-sm mb-4 line-clamp-3">{description}</p>
       
-        <button 
-          className="hidden sm:inline-flex items-center gap-2 px-4 py-2 border border-purple-500 rounded-full text-purple-700 hover:bg-purple-50 transition-colors"
-          style={{
-            background: 'linear-gradient(97.97deg, rgba(79, 33, 196, 0.2) 0%, rgba(79, 33, 196, 0.02) 100%)',
-            // border: '1px solid',
-            // borderImage: 'linear-gradient(0deg, #4F21C4, #4F21C4) 1',
-            boxShadow: `
-              0px 0px 10px 0px #FFFFFF inset,
-              5px 10px 20px 0px #FFFFFF inset
-            `
-          }}
-        >
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8.75 0C8.26602 0 7.875 0.391016 7.875 0.875C7.875 1.35898 8.26602 1.75 8.75 1.75H11.0113L5.50703 7.25703C5.16523 7.59883 5.16523 8.15391 5.50703 8.4957C5.84883 8.8375 6.40391 8.8375 6.7457 8.4957L12.25 2.98867V5.25C12.25 5.73398 12.641 6.125 13.125 6.125C13.609 6.125 14 5.73398 14 5.25V0.875C14 0.391016 13.609 0 13.125 0H8.75ZM2.1875 0.875C0.978906 0.875 0 1.85391 0 3.0625V11.8125C0 13.0211 0.978906 14 2.1875 14H10.9375C12.1461 14 13.125 13.0211 13.125 11.8125V8.75C13.125 8.26602 12.734 7.875 12.25 7.875C11.766 7.875 11.375 8.26602 11.375 8.75V11.8125C11.375 12.0531 11.1781 12.25 10.9375 12.25H2.1875C1.94687 12.25 1.75 12.0531 1.75 11.8125V3.0625C1.75 2.82188 1.94687 2.625 2.1875 2.625H5.25C5.73398 2.625 6.125 2.23398 6.125 1.75C6.125 1.26602 5.73398 0.875 5.25 0.875H2.1875Z" fill="#4F2BBE" />
-          </svg>
+        {url ? (
+          <a 
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:inline-flex items-center gap-2 px-4 py-2 border border-purple-500 rounded-full text-purple-700 hover:bg-purple-50 transition-colors"
+            style={{
+              background: 'linear-gradient(97.97deg, rgba(79, 33, 196, 0.2) 0%, rgba(79, 33, 196, 0.02) 100%)',
+              // border: '1px solid',
+              // borderImage: 'linear-gradient(0deg, #4F21C4, #4F21C4) 1',
+              boxShadow: `
+                0px 0px 10px 0px #FFFFFF inset,
+                5px 10px 20px 0px #FFFFFF inset
+              `
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.75 0C8.26602 0 7.875 0.391016 7.875 0.875C7.875 1.35898 8.26602 1.75 8.75 1.75H11.0113L5.50703 7.25703C5.16523 7.59883 5.16523 8.15391 5.50703 8.4957C5.84883 8.8375 6.40391 8.8375 6.7457 8.4957L12.25 2.98867V5.25C12.25 5.73398 12.641 6.125 13.125 6.125C13.609 6.125 14 5.73398 14 5.25V0.875C14 0.391016 13.609 0 13.125 0H8.75ZM2.1875 0.875C0.978906 0.875 0 1.85391 0 3.0625V11.8125C0 13.0211 0.978906 14 2.1875 14H10.9375C12.1461 14 13.125 13.0211 13.125 11.8125V8.75C13.125 8.26602 12.734 7.875 12.25 7.875C11.766 7.875 11.375 8.26602 11.375 8.75V11.8125C11.375 12.0531 11.1781 12.25 10.9375 12.25H2.1875C1.94687 12.25 1.75 12.0531 1.75 11.8125V3.0625C1.75 2.82188 1.94687 2.625 2.1875 2.625H5.25C5.73398 2.625 6.125 2.23398 6.125 1.75C6.125 1.26602 5.73398 0.875 5.25 0.875H2.1875Z" fill="#4F2BBE" />
+            </svg>
 
-          Read Article
-        </button>
+            Read Article
+          </a>
+        ) : (
+          <button 
+            className="hidden sm:inline-flex items-center gap-2 px-4 py-2 border border-purple-500 rounded-full text-purple-700 hover:bg-purple-50 transition-colors"
+            style={{
+              background: 'linear-gradient(97.97deg, rgba(79, 33, 196, 0.2) 0%, rgba(79, 33, 196, 0.02) 100%)',
+              // border: '1px solid',
+              // borderImage: 'linear-gradient(0deg, #4F21C4, #4F21C4) 1',
+              boxShadow: `
+                0px 0px 10px 0px #FFFFFF inset,
+                5px 10px 20px 0px #FFFFFF inset
+              `
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.75 0C8.26602 0 7.875 0.391016 7.875 0.875C7.875 1.35898 8.26602 1.75 8.75 1.75H11.0113L5.50703 7.25703C5.16523 7.59883 5.16523 8.15391 5.50703 8.4957C5.84883 8.8375 6.40391 8.8375 6.7457 8.4957L12.25 2.98867V5.25C12.25 5.73398 12.641 6.125 13.125 6.125C13.609 6.125 14 5.73398 14 5.25V0.875C14 0.391016 13.609 0 13.125 0H8.75ZM2.1875 0.875C0.978906 0.875 0 1.85391 0 3.0625V11.8125C0 13.0211 0.978906 14 2.1875 14H10.9375C12.1461 14 13.125 13.0211 13.125 11.8125V8.75C13.125 8.26602 12.734 7.875 12.25 7.875C11.766 7.875 11.375 8.26602 11.375 8.75V11.8125C11.375 12.0531 11.1781 12.25 10.9375 12.25H2.1875C1.94687 12.25 1.75 12.0531 1.75 11.8125V3.0625C1.75 2.82188 1.94687 2.625 2.1875 2.625H5.25C5.73398 2.625 6.125 2.23398 6.125 1.75C6.125 1.26602 5.73398 0.875 5.25 0.875H2.1875Z" fill="#4F2BBE" />
+            </svg>
+
+            Read Article
+          </button>
+        )}
     </div>
   )
 }
@@ -69,17 +104,23 @@ export function TrustedCompanies() {
 
   const newsArticles = [
     {
+      title: "Gen-Z Founder Launches Nebula — The AI Tool for the 32,000 AI Tools",
+      description: "Yahoo Finance",
+      url: "https://finance.yahoo.com/news/gen-z-founder-launches-nebula-104700010.html",
+      image: "/article.jpeg"
+    },
+    {
       title: "Nebula AI Launches Revolutionary Platform",
-      description: "Comprehensive coverage of our platform launch and vision for AI tool discovery."
+      description: "Medium",
+      url: "https://medium.com/@kevinmaurits/how-this-gen-z-founder-is-fixing-the-most-broken-part-of-the-ai-boom-6dfdd1755032",
+      image: "/article2.jpeg"
     },
     {
       title: "AI Tool Discovery Gets Major Update",
-      description: "Expert commentary on how Nebula AI is changing the AI landscape."
+      description: "Calipost",
+      url: "https://calipost.com/gen-z-founder-adrian-nunez-launches-nebula-ai-the-platform-helping-you-discover-the-right-ai-tools-faster/",
+      image: "/article3.jpeg"
     },
-    {
-      title: "Building the AI Ecosystem for Nebula AI",
-      description: "In-depth feature on our mission and the technology behind our platform."
-    }
   ]
 
   return (
@@ -152,6 +193,8 @@ export function TrustedCompanies() {
                 key={index}
                 title={article.title}
                 description={article.description}
+                url={article.url}
+                image={article.image}
               />
             ))}
           </div>

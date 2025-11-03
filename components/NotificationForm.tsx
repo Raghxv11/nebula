@@ -68,7 +68,7 @@ export function NotificationForm() {
   }
 
   return (
-    <section className="relative mx-auto max-w-7xl px-6 py-20">
+    <section id="notification-form" className="relative mx-auto max-w-7xl px-6 py-20">
       <div className="mx-auto max-w-6xl bg-[#e7e6fb] pb-3 rounded-3xl">
         {/* Main card with starry background */}
         <div 

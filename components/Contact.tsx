@@ -66,11 +66,11 @@ export function Contact() {
     }
   }
   return (
-    <section className="py-24 bg-white z-20">
-      <div className="mx-auto max-w-7xl px-6 ">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 ">
+    <section className="py-24 bg-white relative z-20">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Left side - Contact info */}
-          <div className="space-y-8 ">
+          <div className="space-y-8">
             <div>
               <h2 className="text-4xl font-bold text-slate-900 mb-4">Contact Us</h2>
               <p className="text-slate-600 max-w-md">
@@ -123,81 +123,123 @@ export function Contact() {
           </div>
 
           {/* Right side - Contact form */}
-          <div className="bg-gray-50 rounded-2xl p-8">
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="bg-gray-50 rounded-2xl p-8 relative z-10">
+            <form onSubmit={handleSubmit} className="space-y-6 relative">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">First Name</label>
+                  <label htmlFor="firstName" className="block text-sm font-medium text-slate-700 mb-2">First Name</label>
                   <input
+                    id="firstName"
+                    name="firstName"
                     type="text"
                     value={formData.firstName}
-                    onChange={(e) => setFormData(prev => ({ ...prev, firstName: e.target.value }))}
+                    onChange={(e) => {
+                      console.log('First name changed:', e.target.value);
+                      setFormData(prev => ({ ...prev, firstName: e.target.value }));
+                    }}
                     placeholder="Mohammed Thufail"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none bg-white relative z-10 cursor-text"
                     required
+                    disabled={submitState.isLoading}
+                    style={{ pointerEvents: 'auto', userSelect: 'text' }}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Last Name</label>
+                  <label htmlFor="lastName" className="block text-sm font-medium text-slate-700 mb-2">Last Name</label>
                   <input
+                    id="lastName"
+                    name="lastName"
                     type="text"
                     value={formData.lastName}
-                    onChange={(e) => setFormData(prev => ({ ...prev, lastName: e.target.value }))}
+                    onChange={(e) => {
+                      console.log('Last name changed:', e.target.value);
+                      setFormData(prev => ({ ...prev, lastName: e.target.value }));
+                    }}
                     placeholder="Mohammed Thufail"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none bg-white relative z-10 cursor-text"
                     required
+                    disabled={submitState.isLoading}
+                    style={{ pointerEvents: 'auto', userSelect: 'text' }}
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Email</label>
+                  <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">Email</label>
                   <input
+                    id="email"
+                    name="email"
                     type="email"
                     value={formData.email}
-                    onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                    onChange={(e) => {
+                      console.log('Email changed:', e.target.value);
+                      setFormData(prev => ({ ...prev, email: e.target.value }));
+                    }}
                     placeholder="hello@company.com"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none bg-white relative z-10 cursor-text"
                     required
+                    disabled={submitState.isLoading}
+                    style={{ pointerEvents: 'auto', userSelect: 'text' }}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Company</label>
+                  <label htmlFor="company" className="block text-sm font-medium text-slate-700 mb-2">Company</label>
                   <input
+                    id="company"
+                    name="company"
                     type="text"
                     value={formData.company}
-                    onChange={(e) => setFormData(prev => ({ ...prev, company: e.target.value }))}
+                    onChange={(e) => {
+                      console.log('Company changed:', e.target.value);
+                      setFormData(prev => ({ ...prev, company: e.target.value }));
+                    }}
                     placeholder="Xonotic"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none bg-white relative z-10 cursor-text"
+                    disabled={submitState.isLoading}
+                    style={{ pointerEvents: 'auto', userSelect: 'text' }}
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Subject</label>
+                <label htmlFor="subject" className="block text-sm font-medium text-slate-700 mb-2">Subject</label>
                 <select 
+                  id="subject"
+                  name="subject"
                   value={formData.subject}
-                  onChange={(e) => setFormData(prev => ({ ...prev, subject: e.target.value }))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
+                  onChange={(e) => {
+                    console.log('Subject changed:', e.target.value);
+                    setFormData(prev => ({ ...prev, subject: e.target.value }));
+                  }}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none bg-white cursor-pointer relative z-10"
+                  disabled={submitState.isLoading}
+                  style={{ pointerEvents: 'auto' }}
                 >
-                  <option>General Inquiry</option>
-                  <option>Partnership</option>
-                  <option>Support</option>
-                  <option>Press</option>
+                  <option value="General Inquiry">General Inquiry</option>
+                  <option value="Partnership">Partnership</option>
+                  <option value="Support">Support</option>
+                  <option value="Press">Press</option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Message</label>
+                <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">Message</label>
                 <textarea
+                  id="message"
+                  name="message"
                   rows={4}
                   value={formData.message}
-                  onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                  onChange={(e) => {
+                    console.log('Message changed:', e.target.value);
+                    setFormData(prev => ({ ...prev, message: e.target.value }));
+                  }}
                   placeholder="Your message here..."
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none resize-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none resize-none bg-white relative z-10 cursor-text"
                   required
-                ></textarea>
+                  disabled={submitState.isLoading}
+                  style={{ pointerEvents: 'auto', userSelect: 'text' }}
+                />
               </div>
 
             <div className="space-y-3">
@@ -218,10 +260,10 @@ export function Contact() {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    <span className="relative z-10">Sending...</span>
+                    Sending...
                   </>
                 ) : (
-                  <span className="relative z-10">Send Message</span>
+                  "Send Message"
                 )}
               </button>
 
