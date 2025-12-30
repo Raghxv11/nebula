@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react"
 
 export function Hero() {
   // Set target date (you can change this to your desired launch date)
-  const targetDate = new Date("2025-12-15T23:59:59").getTime()
+  const targetDate = new Date("2026-01-15T23:59:59").getTime()
   
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
